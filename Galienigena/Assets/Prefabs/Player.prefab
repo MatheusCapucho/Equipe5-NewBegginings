@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -4024541270905152273, guid: d7e60bb45a560b74c81225a41de7a9b3,
     type: 3}
   m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
@@ -108,6 +108,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1280
+  deathObject: {fileID: 3714128588129434864, guid: 3d4859fa8ad92d74e94ed61dd68e5917,
+    type: 3}
+  Player: {fileID: 679120778582806584}
   playerState: 0
 --- !u!50 &679120778582806586
 Rigidbody2D:
