@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -4024541270905152273, guid: d7e60bb45a560b74c81225a41de7a9b3,
     type: 3}
   m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
@@ -99,16 +99,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 100
-  playerState: 0
   grounded: 0
-  rb: {fileID: 0}
-  col: {fileID: 0}
+  tempoDeDebuff: 10
   gameOver: 0
   hearts: 2
   molhada: 0
+  queimada: 0
   mask:
     serializedVersion: 2
     m_Bits: 1280
+  playerState: 0
 --- !u!50 &679120778582806586
 Rigidbody2D:
   serializedVersion: 4
@@ -143,7 +143,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08760166, y: 0.06742239}
+  m_Offset: {x: 0.08760166, y: -2.7308373}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -154,7 +154,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 15.027941, y: 14.883309}
+  m_Size: {x: 15.027941, y: 9.28679}
   m_EdgeRadius: 0
 --- !u!95 &679120778582806590
 Animator:

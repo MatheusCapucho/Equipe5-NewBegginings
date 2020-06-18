@@ -7,30 +7,33 @@ using UnityEngine.SocialPlatforms;
 public class PlayerController : MonoBehaviour
 {
     public float jumpForce;
-    public int playerState = 0; //(skins) 0 normal, 1 de agua, 2 de fogo, 3 ostentacao; 
-    private float burnedModifier = 0.75f; // valor entre 0 e 1 (mudar)
+    
+    private float burnedModifier = 0.75f; // valor entre 0 e 1. Quanto mais perto de 0, menos ela pula.
     public bool grounded;
-    public Rigidbody2D rb;
-    public BoxCollider2D col;
+    public float tempoDeDebuff = 10f;
+    private Rigidbody2D rb;
+    private BoxCollider2D col;
     public bool gameOver = false;
     public int hearts = 2;
     public bool molhada = false;
-    private bool queimada = false;
-    private bool invulneravel = false;
+    public bool queimada = false;
     public LayerMask mask;
-    int aux = 1;
+    int aux = 1; //auxilia no pulo quando esta queimada
 
-
+    public int playerState = 0; //(skins) 0 normal, 2deagua, 3defogo, 4ostentacao, 1pazEAmor; 
+   // public SpriteRenderer sr;
     void Start()
     {
-       //sprite da skin atual
-       //mudar o player state, de acordo com a skin (Fazer isso no menu).
+       // sr = this.gameObject.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
+        this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", playerState);
+
+
         if (molhada == true)
         {
             StartCoroutine(Watered()); 
@@ -47,6 +50,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow)) 
         {
             Duck();
+        }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            this.gameObject.GetComponent<Animator>().SetTrigger("Abaixar");
         }
 
         if (rb.velocity.y < 0)
@@ -85,8 +92,7 @@ public class PlayerController : MonoBehaviour
 
     void Duck () // abaixar
     {
-        // animaçao dela abaixada, 
-        // diminuir o collider
+        this.gameObject.GetComponent<Animator>().SetTrigger("Abaixar");
     }
 
 
@@ -109,7 +115,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Agua"))
         {
-            molhada = true;
+            StartCoroutine(Watered());
         }
         if (other.gameObject.CompareTag("Brasa"))
         {
@@ -134,34 +140,37 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Watered () //a galinha esta no estado molhada
     {
-        molhada = true;
-        //Sprite da Galinha molhada
+        if (playerState != 2) //nao esta com skin aquatica
+        {
+            molhada = true;
+            this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", 2);
 
-        yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(tempoDeDebuff);
 
-        //Sprite da skin atual
-        molhada = false;
+            this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", playerState);
+            molhada = false;
+        }
     }
     IEnumerator Burned() // a galinha esta no estado queimada
     {
-        queimada = true;
-        //Sprite da Galinha queimada
-
-        if (aux == 1)
+        if (playerState != 3) //nao esta com skin de fogo
         {
-            Jump();
-            aux = 0; // variavel auxiliar, para nao fazer a funcao varias vezes.
+            queimada = true;
+            this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", 3);
+
+            if (aux == 1)
+            {
+                Jump();
+                aux = 0; // variavel auxiliar, para nao fazer a funcao varias vezes.
+            }
+
+            yield return new WaitForSeconds(tempoDeDebuff);
+
+            aux = 1;
         }
 
-        yield return new WaitForSeconds(3f);
-
-        aux = 1;
-
-        //Sprite da skin atual
+        this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", playerState);
         queimada = false;
     }
-
-    //daqui pra baixo, o codigo sera apenas sobre os poderes especiais, referentes às skins.
-
 
 }
