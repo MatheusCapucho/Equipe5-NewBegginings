@@ -23,9 +23,12 @@ public class PlayerController : MonoBehaviour
     public GameObject deathObject;
     int aux = 1; //auxilia no pulo quando esta queimada
     bool aux2 = true;
+    bool aux3 = true;
     public GameObject Player;
     private float horizontalBound = -56f;
     public GameObject CoinsUI;
+    public GameObject textoFinal;
+    public GameObject hippie;
 
     public int playerState = 0; //(skins) 0 normal, 2deagua, 3defogo, 4ostentacao, 1pazEAmor; 
    // public SpriteRenderer sr;
@@ -200,10 +203,16 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator GameFinished()
     {
-        Time.timeScale = 0f;
-        SceneManager.LoadScene(3);
-        yield return new WaitForSeconds(10f);
-        Time.timeScale = 1f;
+        textoFinal.SetActive(true);
+        if (aux3)
+        {
+            Instantiate(hippie, Player.transform.position, Quaternion.identity);
+        }
+        aux3 = false;
+
+
+
+        yield return new WaitForSeconds(3.6f);
         SceneManager.LoadScene(0);
     }
 
