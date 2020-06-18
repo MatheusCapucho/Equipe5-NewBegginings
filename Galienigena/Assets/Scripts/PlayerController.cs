@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D col;
     public bool gameOver = false;
+    public bool finishGame = false;
     public int hearts = 2;
     public bool molhada = false;
     public bool queimada = false;
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
     int aux = 1; //auxilia no pulo quando esta queimada
     bool aux2 = true;
     public GameObject Player;
+    private float horizontalBound = -56f;
+    public GameObject CoinsUI;
 
     public int playerState = 0; //(skins) 0 normal, 2deagua, 3defogo, 4ostentacao, 1pazEAmor; 
    // public SpriteRenderer sr;
@@ -35,8 +38,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (CoinsUI.GetComponent<CoinHandler>().coins == 10)
+        {
+            StartCoroutine(GameFinished());
+        }
+
         this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", playerState);
 
+        if (Player.transform.position.x < horizontalBound)
+        {
+            gameOver = true;
+        }
 
         if (molhada == true)
         {
@@ -64,7 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space) && !molhada)
             {
-                rb.gravityScale = 2f; // gravidade planando
+                rb.gravityScale = 4f; // gravidade planando
             } else
             {
                 rb.gravityScale = 10f; //gravidade descendo
@@ -106,7 +118,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = true;
-            rb.gravityScale = 5f;
+            rb.gravityScale = 5.4f; //gravidade no chao
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -119,6 +131,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Agua"))
         {
+            hearts--;
             StartCoroutine(Watered());
         }
         if (other.gameObject.CompareTag("Brasa"))
@@ -183,6 +196,14 @@ public class PlayerController : MonoBehaviour
 
         gameOver = false;
         hearts = 2;
+        SceneManager.LoadScene(0);
+    }
+    IEnumerator GameFinished()
+    {
+        Time.timeScale = 0f;
+        SceneManager.LoadScene(3);
+        yield return new WaitForSeconds(10f);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 

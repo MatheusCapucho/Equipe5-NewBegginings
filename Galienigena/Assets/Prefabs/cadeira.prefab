@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 1054882777}
   m_Layer: 0
   m_Name: cadeira
-  m_TagString: Obstacle
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -654,7 +654,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -20.356861, y: 10.753366}
+  m_Offset: {x: -20.356861, y: 12.795736}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -665,7 +665,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.585381, y: 24.696491}
+  m_Size: {x: 8.585381, y: 20.611752}
   m_EdgeRadius: 0
 --- !u!114 &1054882777
 MonoBehaviour:
