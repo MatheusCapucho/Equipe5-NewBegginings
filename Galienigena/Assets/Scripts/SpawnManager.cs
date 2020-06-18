@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    private Vector3 spawnPosAgua = new Vector3(250f, -8.6f, 0); // posicao que o objeto vai instanciar,
-    private Vector3 spawnPosBrasa = new Vector3(250f, 0f, 0); // nas coordenadas (x,y,0).
-    private Vector3 spawnPosCadeira = new Vector3(250f, 0f, 0); // mudar de acordo com o desejado, para cada objeto
-    private Vector3 spawnPosBandeirinha1 = new Vector3(250f, 0f, 0);
-    private Vector3 spawnPosBandeirinha2 = new Vector3(250f, 0f, 0);  
+    private Vector3 spawnPosAgua = new Vector3(350f, -8.6f, 0); // posicao que o objeto vai instanciar,
+    private Vector3 spawnPosBrasa = new Vector3(350f, 0f, 0); // nas coordenadas (x,y,0).
+    private Vector3 spawnPosCadeira = new Vector3(350f, 0f, 0); // mudar de acordo com o desejado, para cada objeto
+    private Vector3 spawnPosBandeirinha1 = new Vector3(350f, 0f, 0);
+    private Vector3 spawnPosBandeirinha2 = new Vector3(350f, 0f, 0);  
 
     private float repeatRate = 2f; // tempo entre repeticao dos objetos
     private float nextSpawn = 0;
