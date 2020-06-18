@@ -31,10 +31,9 @@ public class PlayerController : MonoBehaviour
     public GameObject hippie;
 
     public int playerState = 0; //(skins) 0 normal, 2deagua, 3defogo, 4ostentacao, 1pazEAmor; 
-   // public SpriteRenderer sr;
     void Start()
     {
-       // sr = this.gameObject.GetComponent<SpriteRenderer>();
+        this.gameObject.GetComponent<SoundManager>().Playtema();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
     }
@@ -50,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
         if (Player.transform.position.x < horizontalBound)
         {
+           GetComponent<SoundManager>().Playmorte();
             gameOver = true;
         }
 
@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space) && !molhada)
             {
+                GetComponent<SoundManager>().Playplanar();
                 rb.gravityScale = 4f; // gravidade planando
             } else
             {
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
         
         if (gameOver)
         {
+            
             StartCoroutine(Die());
         }
     }
@@ -99,6 +101,7 @@ public class PlayerController : MonoBehaviour
     void Jump () // pulo
     {
         grounded = false;
+        GetComponent<SoundManager>().Playpulo();
         if (queimada == false)
         {
             rb.velocity += Vector2.up * jumpForce;
@@ -129,21 +132,24 @@ public class PlayerController : MonoBehaviour
             hearts--;
             if (hearts == 0)
             {
+                GetComponent<SoundManager>().Playmorte();
                 gameOver = true;
             }
         }
         if (other.gameObject.CompareTag("Agua"))
         {
-            hearts--;
+           GetComponent<SoundManager>().Playpiar();
             StartCoroutine(Watered());
         }
         if (other.gameObject.CompareTag("Brasa"))
-        {
+        {      
             hearts--;
             if (hearts == 0)
             {
+                GetComponent<SoundManager>().Playmorte();
                 gameOver = true;
             }
+            this.gameObject.GetComponent<SoundManager>().Playqueimar();
             StartCoroutine(Burned());
             
         }
@@ -151,22 +157,22 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Watered () //a galinha esta no estado molhada
     {
-        if (playerState != 2) //nao esta com skin aquatica
-        {
+
+        
             molhada = true;
+            
             this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", 2);
 
             yield return new WaitForSeconds(tempoDeDebuff);
 
             this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", playerState);
             molhada = false;
-        }
+        
     }
     IEnumerator Burned() // a galinha esta no estado queimada
     {
-        if (playerState != 3) //nao esta com skin de fogo
-        {
             queimada = true;
+            
             this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", 3);
 
             if (aux == 1)
@@ -179,8 +185,6 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(tempoDeDebuff);
             aux = 1;
 
-            
-        }
 
         this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", playerState);
         queimada = false;
@@ -188,7 +192,9 @@ public class PlayerController : MonoBehaviour
     IEnumerator Die()
     {
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
         
+
         if (aux2)
         {        
             Instantiate(deathObject, Player.transform.position, Quaternion.identity);    
@@ -209,9 +215,6 @@ public class PlayerController : MonoBehaviour
             Instantiate(hippie, Player.transform.position, Quaternion.identity);
         }
         aux3 = false;
-
-
-
         yield return new WaitForSeconds(3.6f);
         SceneManager.LoadScene(0);
     }

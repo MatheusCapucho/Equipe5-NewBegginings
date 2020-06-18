@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 679120778582806586}
   - component: {fileID: 679120778582806587}
   - component: {fileID: 679120778582806590}
+  - component: {fileID: 2366460619990938008}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -102,6 +103,7 @@ MonoBehaviour:
   grounded: 0
   tempoDeDebuff: 10
   gameOver: 0
+  finishGame: 0
   hearts: 2
   molhada: 0
   queimada: 0
@@ -111,6 +113,9 @@ MonoBehaviour:
   deathObject: {fileID: 3714128588129434864, guid: 3d4859fa8ad92d74e94ed61dd68e5917,
     type: 3}
   Player: {fileID: 679120778582806584}
+  CoinsUI: {fileID: 0}
+  textoFinal: {fileID: 0}
+  hippie: {fileID: 630456881430273882, guid: a4278f909c5c4f746afbf2de181cfb3b, type: 3}
   playerState: 0
 --- !u!50 &679120778582806586
 Rigidbody2D:
@@ -146,7 +151,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08760166, y: 2.0939322}
+  m_Offset: {x: 0.08760166, y: 0.77141714}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -157,7 +162,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 15.027941, y: 18.936325}
+  m_Size: {x: 15.027941, y: 16.291298}
   m_EdgeRadius: 0
 --- !u!95 &679120778582806590
 Animator:
@@ -178,3 +183,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2366460619990938008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679120778582806584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59cb0a9801e77784b812d090db016cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tema: {fileID: 0}
+  morte: {fileID: 0}
+  planar: {fileID: 0}
+  piar: {fileID: 0}
+  pulo: {fileID: 0}
