@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     private Vector3 spawnPosBandeirinha1 = new Vector3(250f, 0f, 0);
     private Vector3 spawnPosBandeirinha2 = new Vector3(250f, 0f, 0);  
 
-    private float repeatRate = 7f; // tempo entre repeticao dos objetos
+    private float repeatRate = 2f; // tempo entre repeticao dos objetos
     private float nextSpawn = 0;
     private int whatToSpawn; 
 
@@ -21,7 +21,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (Time.time > nextSpawn)
         {
-            whatToSpawn = Random.Range(1, 5);
+            whatToSpawn = Random.Range(1, 6);
 
 
             switch (whatToSpawn)

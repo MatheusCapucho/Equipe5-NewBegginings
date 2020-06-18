@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,7 +19,10 @@ public class PlayerController : MonoBehaviour
     public bool molhada = false;
     public bool queimada = false;
     public LayerMask mask;
+    public GameObject deathObject;
     int aux = 1; //auxilia no pulo quando esta queimada
+    bool aux2 = true;
+    public GameObject Player;
 
     public int playerState = 0; //(skins) 0 normal, 2deagua, 3defogo, 4ostentacao, 1pazEAmor; 
    // public SpriteRenderer sr;
@@ -73,7 +77,7 @@ public class PlayerController : MonoBehaviour
         
         if (gameOver)
         {
-            GameOver();
+            StartCoroutine(Die());
         }
     }
 
@@ -129,15 +133,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void GameOver () // fim de jogo
-    {
-        // some a sprite atual
-        // animaçao de morte
-        // tela de fim de jogo
-        // menu e loja  
-       
-    }
-
     IEnumerator Watered () //a galinha esta no estado molhada
     {
         if (playerState != 2) //nao esta com skin aquatica
@@ -164,13 +159,31 @@ public class PlayerController : MonoBehaviour
                 aux = 0; // variavel auxiliar, para nao fazer a funcao varias vezes.
             }
 
+            
             yield return new WaitForSeconds(tempoDeDebuff);
-
             aux = 1;
+
+            
         }
 
         this.gameObject.GetComponent<Animator>().SetInteger("PlayerState", playerState);
         queimada = false;
+    }
+    IEnumerator Die()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        
+        if (aux2)
+        {        
+            Instantiate(deathObject, Player.transform.position, Quaternion.identity);    
+        }
+        aux2 = false;
+
+        yield return new WaitForSeconds(1.5f);
+
+        gameOver = false;
+        hearts = 2;
+        SceneManager.LoadScene(0);
     }
 
 }

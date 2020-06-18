@@ -17,6 +17,15 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void NightSelection()
+    {
+        sceneSelection = 2;
+    }
+    public void DawnSelection()
+    {
+        sceneSelection = 1;
+    }
+
     public void SkinPeace()
     {
         Player.GetComponent<PlayerController>().playerState = 1;
