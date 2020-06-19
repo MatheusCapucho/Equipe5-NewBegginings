@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (CoinsUI.GetComponent<CoinHandler>().coins == 10)
+        if (CoinsUI.GetComponent<CoinHandler>().coins == 20)
         {
             StartCoroutine(GameFinished());
         }
@@ -79,16 +79,16 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space) && !molhada)
             {
-                GetComponent<SoundManager>().Playplanar();
+             //   GetComponent<SoundManager>().Playplanar();
                 rb.gravityScale = 4f; // gravidade planando
             } else
             {
-                rb.gravityScale = 10f; //gravidade descendo
+                rb.gravityScale = 25f; //gravidade descendo
             }
         }
         if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y < 0)
         {
-            rb.gravityScale = 10f; //gravidade descendo
+            rb.gravityScale = 25f; //gravidade descendo
         }
         
         if (gameOver)
@@ -128,9 +128,10 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
+            GetComponent<SoundManager>().Playbater();
             grounded = false;
-            hearts--;
-            if (hearts == 0)
+            hearts-=2;
+            if (hearts <= 0)
             {
                 GetComponent<SoundManager>().Playmorte();
                 gameOver = true;
@@ -138,7 +139,8 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Agua"))
         {
-           GetComponent<SoundManager>().Playpiar();
+            hearts--;
+            GetComponent<SoundManager>().Playpiar();
             StartCoroutine(Watered());
         }
         if (other.gameObject.CompareTag("Brasa"))

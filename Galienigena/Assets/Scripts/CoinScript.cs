@@ -10,6 +10,7 @@ public class CoinScript : MonoBehaviour
     {
          if (other.gameObject.CompareTag("Player"))
         {
+            other.gameObject.GetComponent<SoundManager>().Playmoeda();
             GameObject.Find("Text").GetComponent<CoinHandler>().coins += coinValue;
             Destroy(this.gameObject);
         }

@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912b61d1be7584f44bcb468df1af47b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 100
+  jumpForce: 80
   grounded: 0
   tempoDeDebuff: 10
   gameOver: 0
@@ -137,7 +137,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &679120778582806587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200,3 +200,6 @@ MonoBehaviour:
   planar: {fileID: 0}
   piar: {fileID: 0}
   pulo: {fileID: 0}
+  queimar: {fileID: 0}
+  bater: {fileID: 0}
+  moeda: {fileID: 0}

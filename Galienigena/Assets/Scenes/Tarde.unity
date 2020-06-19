@@ -1817,7 +1817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -3919,7 +3919,7 @@ PrefabInstance:
     - target: {fileID: 679120778582806591, guid: 7f1808b1c683ec9428a2bc21b510e77f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: 8.8
       objectReference: {fileID: 0}
     - target: {fileID: 679120778582806591, guid: 7f1808b1c683ec9428a2bc21b510e77f,
         type: 3}
@@ -3996,5 +3996,15 @@ PrefabInstance:
       propertyPath: queimar
       value: 
       objectReference: {fileID: 238448159}
+    - target: {fileID: 2366460619990938008, guid: 7f1808b1c683ec9428a2bc21b510e77f,
+        type: 3}
+      propertyPath: bater
+      value: 
+      objectReference: {fileID: 1814573988}
+    - target: {fileID: 2366460619990938008, guid: 7f1808b1c683ec9428a2bc21b510e77f,
+        type: 3}
+      propertyPath: moeda
+      value: 
+      objectReference: {fileID: 892141338}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f1808b1c683ec9428a2bc21b510e77f, type: 3}

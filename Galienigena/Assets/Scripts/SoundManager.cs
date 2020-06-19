@@ -10,6 +10,8 @@ public class SoundManager : MonoBehaviour
     public AudioSource piar;
     public AudioSource pulo;
     public AudioSource queimar;
+    public AudioSource bater;
+    public AudioSource moeda;
 
     public void Playtema()
     {
@@ -34,6 +36,14 @@ public class SoundManager : MonoBehaviour
     public void Playqueimar()
     {
         queimar.Play();
+    }
+    public void Playbater()
+    {
+        bater.Play();
+    }
+    public void Playmoeda()
+    {
+        moeda.Play();
     }
 
 
